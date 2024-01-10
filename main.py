@@ -1,3 +1,4 @@
+import random
 
 def is_safe(board, row, col):
     # Verifică dacă este în siguranță să plasezi un turn pe poziția (row, col)
@@ -42,3 +43,16 @@ def print_board(board):
     for row in board:
         print(" ".join(map(str, row)))
     print()
+    
+# Rezolvă problema celor 8 turnuri
+all_solutions = generate_all_solutions()
+
+if all_solutions:
+    print(f"Numărul total de soluții: {len(all_solutions)}\n")
+    
+    # Afișează o soluție aleatoare
+    random_solution = random.choice(all_solutions)
+    print("Una dintre solutii:")
+    print_board(random_solution)
+else:
+    print("Nu există soluții.")
