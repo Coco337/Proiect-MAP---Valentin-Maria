@@ -31,3 +31,9 @@ def solve_tower_problem_util(board, row, solutions):
             
             # Resetează poziția pentru backtracking
             board[row][col] = 0
+            
+def generate_all_solutions():
+    solutions = []
+    board = [[0 for _ in range(8)] for _ in range(8)]
+    solve_tower_problem_util(board, 0, solutions)
+    return solutions
