@@ -37,3 +37,8 @@ def generate_all_solutions():
     board = [[0 for _ in range(8)] for _ in range(8)]
     solve_tower_problem_util(board, 0, solutions)
     return solutions
+
+def print_board(board):
+    for row in board:
+        print(" ".join(map(str, row)))
+    print()
