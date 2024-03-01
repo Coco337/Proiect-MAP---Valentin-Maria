@@ -1,14 +1,14 @@
 import random
 
 def is_safe(board, row, col):
-    # Verifică dacă este în siguranță să plasezi un turn pe poziția (row, col)
+    # Verify if it's safe to place Tower
     
-    # Verifică pe aceeași coloană
+    # Verify Column
     for i in range(row):
         if board[i][col] == 1:
             return False
     
-    # Verifică pe aceeași linie
+    # Verify Line
     for j in range(col):
         if board[row][j] == 1:
             return False
@@ -16,21 +16,20 @@ def is_safe(board, row, col):
     return True
 
 def solve_tower_problem_util(board, row, solutions):
-    # Funcție utilitară pentru rezolvarea problemei folosind backtracking
     if row == 8:
-        # Am plasat toate cele 8 turnuri
+        # We placed all 8 Towers
         solutions.append([row[:] for row in board])
         return
     
     for col in range(8):
         if is_safe(board, row, col):
-            # Plasează un turn pe poziția (row, col)
+            # Place a Tower (row, col)
             board[row][col] = 1
             
-            # Explorează recursiv pentru a plasa turnurile în celelalte rânduri
+            # Placing Towers recursively
             solve_tower_problem_util(board, row + 1, solutions)
             
-            # Resetează poziția pentru backtracking
+            # Reset position for backtracking
             board[row][col] = 0
             
 def generate_all_solutions():
@@ -44,15 +43,15 @@ def print_board(board):
         print(" ".join(map(str, row)))
     print()
     
-# Rezolvă problema celor 8 turnuri
+# Resolves the problem
 all_solutions = generate_all_solutions()
 
 if all_solutions:
-    print(f"Numărul total de soluții: {len(all_solutions)}\n")
+    print(f"Total number of solutions: {len(all_solutions)}\n")
     
-    # Afișează o soluție aleatoare
+    # Show a random solution
     random_solution = random.choice(all_solutions)
-    print("Una dintre solutii:")
+    print("One of the Solutions:")
     print_board(random_solution)
 else:
-    print("Nu există soluții.")
+    print("No solutions exist.")
